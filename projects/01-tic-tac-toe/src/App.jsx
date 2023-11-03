@@ -1,34 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+//constantes para los turnos
+const TURNS = {
+  X:'x',
+  O:'o'
+}
+
+//dibujamos el tablero una grilla de 3X3
+const board = Array(9).fill(null)
+
+/*
+##componente de cada cuadrado
+children mostrará x /o
+updateBoard actualizará el tablero
+index: para saber que cuadrado es
+
+*/
+const Square = ({children, updateBoard, index}) => {
+  return (
+    <div className="square">{children}</div>
+  ) 
+}
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  // se crea un estado para saber el turno de X u O
 
+  //https://youtu.be/qkzcjwnueLA?si=wmvKpHRMLhauXGeW&t=626
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main className="board">
+          <section className="game">
+        
+        {
+          /* se usa para renderizar arrays map*/           
+          
+              
+                board.map((_,index)=>{
+                  return(
+                    <Square key={index} index={index}>{index}</Square>
+                  )
+                })
+               
+          
+        }
+        
+      </section>
+  </main>
   )
 }
 
